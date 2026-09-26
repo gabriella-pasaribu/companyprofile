@@ -43,7 +43,6 @@ export default function UsersPage() {
           <h2 className="font-semibold text-destructive">
             Something went wrong
           </h2>
-
           <p className="mt-2 text-sm text-destructive/80">{error}</p>
         </div>
       </main>

@@ -44,16 +44,20 @@ export default function Home() {
           <div className="animate-fade-up mx-auto max-w-3xl text-center">
             <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-foreground/5 px-4 py-1.5 text-sm text-muted-foreground">
               <Sparkles className="size-3.5" />
-              Welcome to MyWebsite
+              Welcome to Svarati
             </div>
 
-            <h1 className="text-gradient text-4xl font-semibold tracking-tight leading-tight md:text-6xl">
-              Build something meaningful with technology.
+            <h1 className="text-gradient text-xl font-semibold tracking-tight leading-tight md:text-5xl">
+              Pahami Hakmu,
             </h1>
 
+             <h2 className="text-gradient text-xl font-semibold tracking-tight leading-tight md:text-6xl">
+              Temukan Amanmu!
+            </h2>
+
             <p className="mt-8 text-lg leading-8 text-muted-foreground">
-              We help individuals and businesses build modern, simple, and
-              useful digital experiences.
+              Kami membantu wanita Indonesia mendapatkan ruang aman digital, <br/>
+              terutama untuk para korban dan penyintas kekerasan seksual.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

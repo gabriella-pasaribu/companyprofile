@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { useFavorite } from "@/context/FavoriteContext";
 
 const links = [
@@ -13,6 +12,7 @@ const links = [
   { href: "/services", label: "Services" },
   { href: "/profile", label: "Profile" },
   { href: "/contact", label: "Contact" },
+  { href: "/users", label: "User Directory" },
   { href: "/favorite", label: "Favorite" },
 ];
 
@@ -23,11 +23,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-4 z-50 mx-auto w-full max-w-4xl px-4">
       <nav className="flex items-center justify-between gap-4 rounded-full border border-white/10 bg-background/70 px-4 py-2 shadow-lg shadow-black/20 backdrop-blur-xl">
-        <Link
-          href="/"
-          className="shrink-0 text-sm font-bold tracking-tight"
-        >
-          MyWebsite
+        <Link href="/" className="shrink-0 text-xl font-bold tracking-tight">
+          Svarati
         </Link>
 
         <div className="hidden items-center gap-1 text-sm text-muted-foreground sm:flex">
@@ -46,18 +43,13 @@ export default function Navbar() {
                   isActive && "bg-foreground/10 text-foreground"
                 )}
               >
-                {link.label}
+                {link.href === "/favorite"
+                  ? `${link.label} (${favorites.length}) `
+                  : link.label}
               </Link>
             );
           })}
         </div>
-
-        <Link
-          href="/contact"
-          className={cn(buttonVariants({ size: "sm" }), "rounded-full")}
-        >
-          Get in touch
-        </Link>
       </nav>
     </header>
   );

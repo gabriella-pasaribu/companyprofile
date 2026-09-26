@@ -49,7 +49,7 @@ export default function UserCard({ user, isFavorite, onToggleFavorite }) {
               className="size-4"
               fill={isFavorite ? "currentColor" : "none"}
             />
-            {isFavorite ? "Remove from Favourite" : "Add to Favourite"}
+            {isFavorite ? "Remove from Favorite" : "Add to Favorite"}
           </Button>
         </div>
       </CardContent>
