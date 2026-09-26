@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useUser } from "@/context/UserContext";
 
 import { cn } from "@/lib/utils";
 import { useFavorite } from "@/context/FavoriteContext";
+import { buttonVariants } from "@/components/ui/button";
 
 const links = [
   { href: "/", label: "Home" },
@@ -18,6 +20,7 @@ const links = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { name, submitted } = useUser();
   const { favorites } = useFavorite();
 
   return (
@@ -50,6 +53,16 @@ export default function Navbar() {
             );
           })}
         </div>
+
+        {submitted && <span>Hi, {name} 👋</span>}
+        <Link
+          href="/contact"
+          className={cn(buttonVariants({ size: "sm" }), "rounded-full")}
+        >
+        
+          Get in touch
+        </Link>
+
       </nav>
     </header>
   );
