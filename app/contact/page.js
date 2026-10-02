@@ -6,6 +6,7 @@ import { Mail, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { submitContactForm } from "./action";
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "hello@mywebsite.com" },
@@ -26,18 +27,24 @@ export default function Contact() {
     setSubmitted,
   } = useUser();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setSubmitted(true);
+  //ganti handlesubmit menjadi kode berikut, kode yang lain tetap sama
 
-    console.log({
-      name,
-      email,
-      message,
-    });
+async function handleSubmit(event) {
+  event.preventDefault();
 
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("message", message);
+
+  const result = await submitContactForm(formData);
+
+  if (result.success) {
     setSubmitted(true);
+  } else {
+    alert(result.error);
   }
+}
 
   return (
     <section className="relative">
