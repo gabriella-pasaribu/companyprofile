@@ -1,7 +1,6 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { messages } from "@/lib/db";
 
 export async function deleteMessageAction(id) {
@@ -10,5 +9,4 @@ export async function deleteMessageAction(id) {
 
   messages.splice(index, 1);
   revalidatePath("/messages");
-  redirect("/messages?status=deleted");
 }
