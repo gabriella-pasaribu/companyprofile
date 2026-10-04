@@ -1,6 +1,8 @@
 import { messages } from "@/lib/db";
 import { deleteMessageAction } from "./actions";
 
+export const dynamic = "force-dynamic";
+
 export default function MessagesPage() {
   return (
     <section className="mx-auto max-w-3xl px-6 py-20">
