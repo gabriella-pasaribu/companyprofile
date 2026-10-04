@@ -5,7 +5,16 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return Response.json(
+      { error: "Error. Data tidak boleh kosong!" },
+      { status: 400 }
+    );
+  }
+
   const result = addFavorite(body);
 
   if (!result.success) {
