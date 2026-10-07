@@ -14,17 +14,21 @@ export function FavoriteProvider({ children }) {
   }, []);
 
   async function addFavorite(user) {
-    const res = await fetch("/api/favorites", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    });
+  const res = await fetch("/api/favorites", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    }),
+  });
 
-    if (res.ok) {
-      const saved = await res.json();
-      setFavorites((prev) => [...prev, saved]);
-    }
+  if (res.ok) {
+    const saved = await res.json();
+    setFavorites((prev) => [...prev, saved]);
   }
+}
 
   async function removeFavorite(userId) {
     const res = await fetch(`/api/favorites/${userId}`, { method: "DELETE" });
