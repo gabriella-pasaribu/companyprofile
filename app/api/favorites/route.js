@@ -1,16 +1,16 @@
-import { getAllFavorites, addFavorite } from "@/lib/services/favoriteService";
+import { removeFavorite } from "@/lib/services/favoriteService";
 
-export async function GET() {
-  return Response.json(await getAllFavorites());
-}
+export async function DELETE(request, { params }) {
+  try {
+    const { id } = await params;
+    const result = await removeFavorite(id);
 
-export async function POST(request) {
-  const body = await request.json();
-  const result = await addFavorite(body);
+    if (!result.success) {
+      return Response.json({ error: result.error }, { status: result.status });
+    }
 
-  if (!result.success) {
-    return Response.json({ error: result.error }, { status: result.status });
+    return Response.json({ message: result.message });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
   }
-
-  return Response.json(result.data, { status: result.status });
 }

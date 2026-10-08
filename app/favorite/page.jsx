@@ -1,12 +1,13 @@
 "use client";
 
-import { HeartOff } from "lucide-react";
+import Link from "next/link";
+import { Heart } from "lucide-react";
 
 import UserCard from "@/components/UserCard";
 import { useFavorite } from "@/context/FavoriteContext";
 
-export default function FavoritePage() {
-  const { favorites, toggleFavorite, isFavorite } = useFavorite();
+export default function FavoritesPage() {
+  const { favorites } = useFavorite();
 
   return (
     <section className="relative">
@@ -23,23 +24,32 @@ export default function FavoritePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {favorites.length > 0 ? (
-            favorites.map((user) => (
+        {favorites.length > 0 ? (
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {favorites.map((favorite) => (
               <UserCard
-                key={user.id}
-                user={user}
-                isFavorite={isFavorite(user.id)}
-                onToggleFavorite={() => toggleFavorite(user)}
+                key={favorite.id}
+                user={{
+                  id: favorite.app_users.id,
+                  name: favorite.app_users.name,
+                  email: favorite.app_users.email,
+                  company: { name: favorite.app_users.company_name },
+                }}
               />
-            ))
-          ) : (
-            <div className="col-span-full flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
-              <HeartOff className="size-8" />
-              <p>Belum ada user favorit.</p>
-            </div>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-16 flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
+            <Heart className="size-8" />
+            <p>Belum ada user favorit. Tandai dulu dari User Directory.</p>
+            <Link
+              href="/users"
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              Buka User Directory →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
